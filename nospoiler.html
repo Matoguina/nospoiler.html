@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Will You Be My Girlfriend?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #fff5f5;
+      font-family: 'Indie Flower', cursive;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background-color: #ffebee;
+      padding: 40px;
+      border-radius: 20px;
+      border: 3px solid #ff6b81;
+      box-shadow: 0 8px 20px rgba(255, 107, 129, 0.3);
+      max-width: 600px;
+      width: 90%;
+    }
+
+    .header_text {
+      font-size: 50px;
+      font-weight: bold;
+      color: #ff6b81;
+      margin: 20px 0;
+      text-shadow: 2px 2px 4px rgba(255, 107, 129, 0.2);
+    }
+
+    .gif_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .gif_container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .buttons {
+      margin-top: 20px;
+      position: relative;
+      height: 100px;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      font-size: 20px;
+      border: 2px solid #ff6b81;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background-color: #ff6b81;
+      color: white;
+      font-family: 'Indie Flower', cursive;
+      box-shadow: 0 4px 10px rgba(255, 107, 129, 0.3);
+    }
+
+    .btn:hover {
+      background-color: white;
+      color: #ff6b81;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(255, 107, 129, 0.4);
+    }
+
+    #noButton {
+      background-color: #ff4757;
+      border-color: #ff4757;
+      position: absolute;
+    }
+
+    #noButton:hover {
+      background-color: white;
+      color: #ff4757;
+    }
+
+    /* Hide all extra pages initially */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- MAIN QUESTION PAGE -->
+<div class="container" id="mainPage">
+  <div class="header_text">Will you be my Girlfriend?</div>
+  <div class="gif_container">
+    <img src="https://media.tenor.com/X_TEp5v_GqUAAAAi/cat-bug.gif" alt="Funny Cat">
+  </div>
+  <div class="buttons" id="buttonContainer">
+    <button class="btn" id="yesButton">Yes</button>
+    <button class="btn" id="noButton">No</button>
+  </div>
+</div>
+
+<!-- YES PAGE 1 -->
+<div class="container hidden" id="yesPage1">
+  <div class="header_text">PLEASE SAY IT SA IG KUNG 22O</div>
+  <div class="gif_container">
+    <img src="https://media.tenor.com/YTw87WdiaasAAAAi/tkthao219-capoo.gif" alt="Capoo Hug">
+  </div>
+</div>
+
+<!-- YES PAGE 2 -->
+<div class="container hidden" id="noButton">
+  <div class="header_text">...</div>
+  <div class="gif_container">
+    <img src="https://media.tenor.com/2vOtmQ0Vl6kAAAAi/tkthao219-capoo.gif" alt="Capoo Again">
+  </div>
+</div>
+
+<script>
+  const noBtn = document.getElementById('noButton');
+  const container = document.getElementById('buttonContainer');
+  const yesBtn = document.getElementById('yesButton');
+  const mainPage = document.getElementById('mainPage');
+  const yesPage1 = document.getElementById('yesPage1');
+  const yesPage2 = document.getElementById('yesPage2');
+
+  noBtn.addEventListener('mouseenter', () => {
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+    const btnWidth = noBtn.offsetWidth;
+    const btnHeight = noBtn.offsetHeight;
+
+    const maxX = containerWidth - btnWidth;
+    const maxY = containerHeight - btnHeight;
+
+    const randomX = Math.floor(Math.random() * maxX);
+    const randomY = Math.floor(Math.random() * maxY);
+
+    noBtn.style.left = `${randomX}px`;
+    noBtn.style.top = `${randomY}px`;
+  });
+
+  yesBtn.addEventListener('click', () => {
+    mainPage.classList.add('hidden');
+
+    // Randomly choose between yesPage1 or yesPage2
+    const showPage1 = Math.random() < 0.5;
+    if (showPage1) {
+      yesPage1.classList.remove('hidden');
+    } else {
+      yesPage2.classList.remove('hidden');
+    }
+  });
+</script>
+
+</body>
+</html>
